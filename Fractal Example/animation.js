@@ -29,13 +29,13 @@ var Fractal = (function(Fractal) {
 	if (Fractal.Animation)
 		return Fractal;
 
-	function getMousePos(canvas, evt, pos) {
-		var rect = canvas.getBoundingClientRect();
-		pos = pos || {};
-		pos.x = evt.clientX - rect.left;
-		pos.y = evt.clientY - rect.top;
-		return pos;
-	}
+	// function getMousePos(canvas, evt, pos) {
+	// 	var rect = canvas.getBoundingClientRect();
+	// 	pos = pos || {};
+	// 	pos.x = evt.clientX - rect.left;
+	// 	pos.y = evt.clientY - rect.top;
+	// 	return pos;
+	// }
 
 	var slowAnimations = document.cookie.replace(/(?:(?:^|.*;\s*)slowAnimations\s*\=\s*([^;]*).*$)|^.*$/, "$1") === "true";
 	// constructor

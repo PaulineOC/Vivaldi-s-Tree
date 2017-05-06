@@ -50,9 +50,16 @@ var Fractal = (function (Fractal, Color){
 			}
 		}
 
-		this.base_width = this.width / 48;
-		this.base_height = this.height / 4.5;
+
+
+		this.base_width = this.width / 48	;
+		//12.5
+
+
+		this.base_height = this.height / 5;
 		this.diagonal_length = Math.sqrt(this.width * this.width + this.height * this.height);
+	
+		//721
 		this.ctx.lineCap = 'round';
 		this.update(pos);
 	}
