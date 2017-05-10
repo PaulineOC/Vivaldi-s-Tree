@@ -162,7 +162,7 @@ Sky = function(){
     c.mesh.position.y = Math.sin(a)*h;
     c.mesh.position.x = Math.cos(a)*h;
     c.mesh.position.z = -400-Math.random()*400;
-    c.mesh.rotation.z = a + Math.PI/2;
+    // c.mesh.rotation.z = a + Math.PI/2;
     var s = 1+Math.random()*2;
     c.mesh.scale.set(s,s,s);
     this.mesh.add(c.mesh);
@@ -196,8 +196,8 @@ Cloud = function(){
     m.position.x = i*15;
     m.position.y = Math.random()*10;
     m.position.z = Math.random()*10;
-    m.rotation.z = Math.random()*Math.PI*2;
-    m.rotation.y = Math.random()*Math.PI*2;
+    // m.rotation.z = Math.random()*Math.PI*2;
+    // m.rotation.y = Math.random()*Math.PI*2;
     var s = .1 + Math.random()*.9;
     m.scale.set(s,s,s);
     m.castShadow = true;
@@ -224,7 +224,7 @@ function createSky(){
 
 function loop(){
   updatePlane();
-  sky.mesh.rotation.z += .01;
+  // sky.mesh.rotation.z += .01;
   renderer.render(scene, camera);
   requestAnimationFrame(loop);
 }
