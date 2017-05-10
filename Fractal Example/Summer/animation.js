@@ -80,7 +80,7 @@ var Fractal = (function(Fractal) {
 			frameId = window.requestAnimationFrame(stepFrame);
 		}.bind(this);
 
-		canvas.addEventListener('mousemove', this.moveListener, false);
+		//canvas.addEventListener('mousemove', this.moveListener, false);
 
 		fractal.update(startPos);
 	}

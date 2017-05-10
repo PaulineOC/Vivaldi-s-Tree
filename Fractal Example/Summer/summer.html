@@ -3,9 +3,9 @@
 <head>
 <title>Fractal Canvas Benchmark</title>
 <script src="../color/color.js"></script>
-<script src="../fractal.js"></script>
-<script src="../animation.js"></script>
-<script src="../htree.js"></script>
+<script src="fractal.js"></script>
+<script src="animation.js"></script>
+<script src="htree.js"></script>
 
 </head>
 <body>
@@ -25,13 +25,10 @@ quite a nice effect.</p>
 
 
 <script type="text/javascript">
-	
-	
-	canvas = document.getElementById('HTreeDemo'),
-	fract = new Fractal.HTree(canvas, {x: 0, y: 0}, 14, "black", "rgba(91,0,144,0.3)", true);
-	start = {x: canvas.width / 4, y: 10};
 
-	//85
+	canvas = document.getElementById('HTreeDemo'),
+	fract = new Fractal.HTree(canvas, {x: 0, y: 0}, 14, "black", "rgba(84, 175, 34,0.3)", true);
+	start = {x: canvas.width / 4, y: 10};
 	target = {x: canvas.width / 5, y: 10};
 	var htreeAnim = new Fractal.Animation(fract, start, target);
 	htreeAnim.skip(1000);
