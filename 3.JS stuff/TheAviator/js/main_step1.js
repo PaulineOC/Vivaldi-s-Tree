@@ -1,10 +1,3 @@
-
-//To add elements to scene, need 2 functions:
-//* Object function: actual geometry and meshes --> eg: creates sphere 
-//* Create function: create an instance of the object, sets initial position of object,  add to scene --> scene.add(sky.mesh);
-//See SKY functions for reference 
-
-
 //COLORS
 var Colors = {
     red:0xf25346,
@@ -92,10 +85,6 @@ function createLights() {
   scene.add(shadowLight);
 }
 
-///OBJECTS 
-
-
-
 
 var AirPlane = function(){
 	this.mesh = new THREE.Object3D();
@@ -173,25 +162,25 @@ Sky = function(){
     c.mesh.position.y = Math.sin(a)*h;
     c.mesh.position.x = Math.cos(a)*h;
     c.mesh.position.z = -400-Math.random()*400;
-    // c.mesh.rotation.z = a + Math.PI/2;
+    c.mesh.rotation.z = a + Math.PI/2;
     var s = 1+Math.random()*2;
     c.mesh.scale.set(s,s,s);
     this.mesh.add(c.mesh);
   }
 }
 
-// Sea = function(){
-//   var geom = new THREE.CylinderGeometry(600,600,800,40,10);
-//   geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI/2));
-//   var mat = new THREE.MeshPhongMaterial({
-//     color:Colors.blue,
-//     transparent:true,
-//     opacity:.6,
-//     shading:THREE.FlatShading,
-//   });
-//   this.mesh = new THREE.Mesh(geom, mat);
-//   this.mesh.receiveShadow = true;
-// }
+Sea = function(){
+  var geom = new THREE.CylinderGeometry(600,600,800,40,10);
+  geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI/2));
+  var mat = new THREE.MeshPhongMaterial({
+    color:Colors.blue,
+    transparent:true,
+    opacity:.6,
+    shading:THREE.FlatShading,
+  });
+  this.mesh = new THREE.Mesh(geom, mat);
+  this.mesh.receiveShadow = true;
+}
 
 Cloud = function(){
   this.mesh = new THREE.Object3D();
@@ -208,8 +197,7 @@ Cloud = function(){
     m.position.y = Math.random()*10;
     m.position.z = Math.random()*10;
     m.rotation.z = Math.random()*Math.PI*2;
-    m.rotation.y += Math.random()*Math.PI*2;
-
+    m.rotation.y = Math.random()*Math.PI*2;
     var s = .1 + Math.random()*.9;
     m.scale.set(s,s,s);
     m.castShadow = true;
@@ -219,6 +207,7 @@ Cloud = function(){
 }
 
 // 3D Models
+var sea;
 var airplane;
 
 function createPlane(){
@@ -226,6 +215,12 @@ function createPlane(){
   airplane.mesh.scale.set(.25,.25,.25);
   airplane.mesh.position.y = 100;
   scene.add(airplane.mesh);
+}
+
+function createSea(){
+  sea = new Sea();
+  sea.mesh.position.y = -600;
+  scene.add(sea.mesh);
 }
 
 function createSky(){
@@ -236,12 +231,8 @@ function createSky(){
 
 function loop(){
   updatePlane();
-  // sky.mesh.rotate.x += 0.1;
-  sky.mesh.translateX(-5);
-
-  if(sky.mesh.position.x < -2250){
-    sky.mesh.position.x=2000;
-  }
+  sea.mesh.rotation.z += .005;
+  sky.mesh.rotation.z += .01;
   renderer.render(scene, camera);
   requestAnimationFrame(loop);
 }
@@ -268,6 +259,7 @@ function init(event){
   createScene();
   createLights();
   createPlane();
+  createSea();
   createSky();
   loop();
 }
