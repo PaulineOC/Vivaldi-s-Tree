@@ -1,8 +1,9 @@
+// me :)
 
 //To add elements to scene, need 2 functions:
-//* Object function: actual geometry and meshes --> eg: creates sphere 
+//* Object function: actual geometry and meshes --> eg: creates sphere
 //* Create function: create an instance of the object, sets initial position of object,  add to scene --> scene.add(sky.mesh);
-//See SKY functions for reference 
+//See SKY functions for reference
 
 
 //COLORS
@@ -92,7 +93,7 @@ function createLights() {
   scene.add(shadowLight);
 }
 
-///OBJECTS 
+///OBJECTS
 
 
 
