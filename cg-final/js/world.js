@@ -80,8 +80,8 @@ var ambientLight, hemisphereLight, shadowLight;
 
 function createLights() {
 
-    hemisphereLight = new THREE.HemisphereLight(0xaaaaaa, 0x000000, .9)
-    shadowLight = new THREE.DirectionalLight(0xffffff, .9);
+    hemisphereLight = new THREE.HemisphereLight(0xaaaaaa, 0x000000, 0.9);
+    shadowLight = new THREE.DirectionalLight(0xffffff, 0.9);
     shadowLight.position.set(150, 350, 350);
     shadowLight.castShadow = true;
     shadowLight.shadow.camera.left = -400;
@@ -120,7 +120,7 @@ var AirPlane = function() {
 
     // Create the cabin
     var geomCockpit = new THREE.BoxGeometry(120, 50, 40, 1, 1, 1);
-    var matCockpit = new THREE.MeshPhongMaterial({
+    matCockpit = new THREE.MeshPhongMaterial({
         color: Colors.sub,
         shading: THREE.FlatShading
     });
@@ -132,7 +132,7 @@ var AirPlane = function() {
 
     // Create the tail join
     var geomTailJoin = new THREE.BoxGeometry(90, 20, 20, 1, 1, 1);
-    var matCockpit = new THREE.MeshPhongMaterial({
+    matCockpit = new THREE.MeshPhongMaterial({
         color: Colors.sub,
         shading: THREE.FlatShading
     });
@@ -182,7 +182,7 @@ var AirPlane = function() {
     this.mesh.add(this.propeller);
 };
 
-Sky = function() {
+var Sky = function() {
     this.mesh = new THREE.Object3D();
     this.nClouds = 20;
     this.clouds = [];
@@ -200,9 +200,9 @@ Sky = function() {
         c.mesh.scale.set(s, s, s);
         this.mesh.add(c.mesh);
     }
-}
+};
 
-// Sea = function(){
+// var Sea = function(){
 //   var geom = new THREE.CylinderGeometry(600,600,800,40,10);
 //   geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI/2));
 //   var mat = new THREE.MeshPhongMaterial({
@@ -215,7 +215,7 @@ Sky = function() {
 //   this.mesh.receiveShadow = true;
 // }
 
-Cloud = function() {
+var Cloud = function() {
     this.mesh = new THREE.Object3D();
     this.mesh.name = "cloud";
     var geom = new THREE.CubeGeometry(20, 20, 20);
@@ -232,20 +232,20 @@ Cloud = function() {
         m.rotation.z = Math.random() * Math.PI * 2;
         m.rotation.y += Math.random() * Math.PI * 2;
 
-        var s = .1 + Math.random() * .9;
+        var s = 0.1 + Math.random() * 0.9;
         m.scale.set(s, s, s);
         m.castShadow = true;
         m.receiveShadow = true;
         this.mesh.add(m);
     }
-}
+};
 
 // 3D Models
 var airplane;
 
 function createPlane() {
     airplane = new AirPlane();
-    airplane.mesh.scale.set(.25, .25, .25);
+    airplane.mesh.scale.set(0.25, 0.25, 0.25);
     airplane.mesh.position.y = 100;
     scene.add(airplane.mesh);
 }
@@ -269,8 +269,8 @@ function loop() {
 }
 
 function updatePlane() {
-    var targetY = normalize(mousePos.y, -.75, .75, 25, 175);
-    var targetX = normalize(mousePos.x, -.75, .75, -100, 100);
+    var targetY = normalize(mousePos.y, -0.75, 0.75, 25, 175);
+    var targetX = normalize(mousePos.x, -0.75, 0.75, -100, 100);
     airplane.mesh.position.y = targetY;
     airplane.mesh.position.x = targetX;
     airplane.propeller.rotation.x += 0.3;
