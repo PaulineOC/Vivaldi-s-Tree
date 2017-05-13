@@ -184,12 +184,12 @@ var AirPlane = function() {
 
 var Sky = function() {
     this.mesh = new THREE.Object3D();
-    this.nClouds = 20;
-    this.clouds = [];
-    var stepAngle = Math.PI * 2 / this.nClouds;
-    for (var i = 0; i < this.nClouds; i++) {
-        var c = new Cloud();
-        this.clouds.push(c);
+    this.nSneks = 20;
+    this.sneks = [];
+    var stepAngle = Math.PI * 2 / this.nSneks;
+    for (var i = 0; i < this.nSneks; i++) {
+        var c = new Snek();
+        this.sneks.push(c);
         var a = stepAngle * i;
         var h = 750 + Math.random() * 200;
         c.mesh.position.y = Math.sin(a) * h;
@@ -238,6 +238,30 @@ var Cloud = function() {
         m.receiveShadow = true;
         this.mesh.add(m);
     }
+};
+
+var Snek = function() {	
+	this.mesh = new THREE.Object3D();
+    this.mesh.name = "snek";
+    var geom = new THREE.CubeGeometry(15, 15, 15);
+    var mat = new THREE.MeshPhongMaterial({
+        color: Colors.red,
+    });
+
+    var nBlocs = 10 + Math.floor(Math.random() * 3);
+    for (var i = 0; i < nBlocs; i++) {
+        var m = new THREE.Mesh(geom.clone(), mat);
+        m.position.x = i * 15;
+        m.position.y = 15;
+        m.position.z = Math.sin(i) * 15;
+        
+        var s = 1 - 0.1*i;
+        m.scale.set(s, s, s);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        this.mesh.add(m);
+    }
+
 };
 
 // 3D Models
