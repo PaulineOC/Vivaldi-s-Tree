@@ -10,7 +10,7 @@ var Colors = {
     white: 0xd8d0d1,
     brown: 0x59332e,
     pink: 0xF5986E,
-    sub: 0x444444,
+    sub: 0xFFDF68,
     blue: 0x68c3c0,
 };
 
