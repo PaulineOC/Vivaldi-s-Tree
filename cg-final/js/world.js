@@ -283,12 +283,16 @@ var cuteBubbles = function(){
 
       var bubble = new THREE.Mesh(geometry.clone(), material);
 
-      bubble.position.x = Math.floor((Math.random() * 500) + 1);
-      bubble.position.y = Math.floor((Math.random() *500) + 1);
+      bubble.position.x = getRndInteger(-300,300);
+      bubble.position.y = getRndInteger(-300,300);
 
       this.mesh.add(bubble);
   }
 
+}
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 // 3D Models
 var airplane;
