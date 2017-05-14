@@ -386,7 +386,7 @@ var myBubbles;
 function createStarfish() {
     var starfish = new Starfish();
     starfish.mesh.scale.set(0.25, 0.25, 0.25);
-    starfish.mesh.position.y = 150;
+    starfish.mesh.position.y = 500;
     scene.add(starfish.mesh);
 }
 
