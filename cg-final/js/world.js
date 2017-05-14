@@ -318,7 +318,7 @@ function loop() {
     starfish.mesh.translateY(-2);
 
     if (starfish.mesh.position.y < -100) {
-        starfish.mesh.position.y =100 ;
+        starfish.mesh.position.y =200 ;
     }
 
     // ocutupus
