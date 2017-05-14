@@ -288,8 +288,6 @@ var cuteBubbles = function(){
 
       this.mesh.add(bubble);
   }
-  // add to mesh
-  this.mesh.add( sphere );
 
 }
 // 3D Models
