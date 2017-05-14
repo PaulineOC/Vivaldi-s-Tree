@@ -13,6 +13,7 @@ var Colors = {
     pink: 0xF5986E,
     sub: 0xFFDF68,
     blue: 0x68c3c0,
+    purple: 0x551a8b
 };
 
 // THREEJS RELATED VARIABLES
@@ -269,7 +270,7 @@ var Starfish = function(){
   this.mesh.name = "starfish";
 
   var geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
-  var material = new THREE.MeshBasicMaterial( {  color: Colors.pink } );
+  var material = new THREE.MeshBasicMaterial( {  color: Colors.purple } );
   var torusKnot = new THREE.Mesh( geometry, material );
 
   // add to mesh
