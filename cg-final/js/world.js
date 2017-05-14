@@ -366,7 +366,7 @@ function init(event) {
     createSky();
 
     // Rosa
-    createStarfish();
+    createBubbles();
     loop();
 }
 
