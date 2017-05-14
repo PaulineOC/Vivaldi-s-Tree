@@ -102,7 +102,6 @@ function createLights() {
 
 ///OBJECTS
 
-<<<<<<< HEAD
 var Starfish = function() {
     this.mesh = new THREE.Object3D();
     this.mesh.name = "starfish";
@@ -180,9 +179,6 @@ var Starfish = function() {
     this.mesh.add(subFin);
 }
 
-
-=======
->>>>>>> 796c5d1d27f8e84d81c46453117df00700fb1783
 var AirPlane = function() {
     this.mesh = new THREE.Object3D();
     this.mesh.name = "airPlane";
