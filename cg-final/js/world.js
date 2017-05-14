@@ -320,7 +320,7 @@ function loop() {
     }
 
     // update starfish
-    starfish.mesh.translateY(-1);
+    starfish.mesh.translateY(-.5);
 
     if (starfish.mesh.position.y < -100) {
         starfish.mesh.position.y =400 ;
