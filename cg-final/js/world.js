@@ -1,3 +1,4 @@
+
 //To add elements to scene, need 2 functions:
 //* Object function: actual geometry and meshes --> eg: creates sphere
 //* Create function: create an instance of the object, sets initial position of object,  add to scene --> scene.add(sky.mesh);
@@ -100,7 +101,67 @@ function createLights() {
 ///OBJECTS
 
 
+var AirPlane = function(){
+	this.mesh = new THREE.Object3D();
+  this.mesh.name = "airPlane";
 
+  // Create the cabin
+	var geomCockpit = new THREE.BoxGeometry(60,50,50,1,1,1);
+  var matCockpit = new THREE.MeshPhongMaterial({color:Colors.red, shading:THREE.FlatShading});
+  var cockpit = new THREE.Mesh(geomCockpit, matCockpit);
+	cockpit.castShadow = true;
+  cockpit.receiveShadow = true;
+  this.mesh.add(cockpit);
+
+  // Create Engine
+  var geomEngine = new THREE.BoxGeometry(20,50,50,1,1,1);
+  var matEngine = new THREE.MeshPhongMaterial({color:Colors.white, shading:THREE.FlatShading});
+  var engine = new THREE.Mesh(geomEngine, matEngine);
+  engine.position.x = 40;
+  engine.castShadow = true;
+  engine.receiveShadow = true;
+	this.mesh.add(engine);
+
+  // Create Tailplane
+
+  var geomTailPlane = new THREE.BoxGeometry(15,20,5,1,1,1);
+  var matTailPlane = new THREE.MeshPhongMaterial({color:Colors.red, shading:THREE.FlatShading});
+  var tailPlane = new THREE.Mesh(geomTailPlane, matTailPlane);
+  tailPlane.position.set(-35,25,0);
+  tailPlane.castShadow = true;
+  tailPlane.receiveShadow = true;
+	this.mesh.add(tailPlane);
+
+  // Create Wing
+
+  var geomSideWing = new THREE.BoxGeometry(40,8,150,1,1,1);
+  var matSideWing = new THREE.MeshPhongMaterial({color:Colors.red, shading:THREE.FlatShading});
+  var sideWing = new THREE.Mesh(geomSideWing, matSideWing);
+  sideWing.position.set(0,0,0);
+  sideWing.castShadow = true;
+  sideWing.receiveShadow = true;
+	this.mesh.add(sideWing);
+
+  // Propeller
+
+  var geomPropeller = new THREE.BoxGeometry(20,10,10,1,1,1);
+  var matPropeller = new THREE.MeshPhongMaterial({color:Colors.brown, shading:THREE.FlatShading});
+  this.propeller = new THREE.Mesh(geomPropeller, matPropeller);
+  this.propeller.castShadow = true;
+  this.propeller.receiveShadow = true;
+
+  // Blades
+
+  var geomBlade = new THREE.BoxGeometry(1,100,20,1,1,1);
+  var matBlade = new THREE.MeshPhongMaterial({color:Colors.brownDark, shading:THREE.FlatShading});
+
+  var blade = new THREE.Mesh(geomBlade, matBlade);
+  blade.position.set(8,0,0);
+  blade.castShadow = true;
+  blade.receiveShadow = true;
+	this.propeller.add(blade);
+  this.propeller.position.set(50,0,0);
+  this.mesh.add(this.propeller);
 
 var AirPlane = function() {
     this.mesh = new THREE.Object3D();
@@ -240,7 +301,7 @@ var Cloud = function() {
     }
 };
 
-var Snek = function() {	
+var Snek = function() {
 	this.mesh = new THREE.Object3D();
     this.mesh.name = "snek";
     var geom = new THREE.CubeGeometry(15, 15, 15);
@@ -254,7 +315,7 @@ var Snek = function() {
         m.position.x = i * 15;
         m.position.y = 15;
         m.position.z = Math.sin(i) * 15;
-        
+
         var s = 1 - 0.1*i;
         m.scale.set(s, s, s);
         m.castShadow = true;
@@ -264,8 +325,24 @@ var Snek = function() {
 
 };
 
+// starfish
+
+var Starfish = function(){
+  this.mesh = new THREE.Object3D();
+  this.mesh.name = "starfish";
+
+  var geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
+  var material = new THREE.MeshBasicMaterial( {  color: Colors.pink,} );
+  var torusKnot = new THREE.Mesh( geometry, material );
+
+  // add to mesh
+  this.mesh.add( torusKnot );
+
+
+}
 // 3D Models
 var airplane;
+var starfish;
 
 function createPlane() {
     airplane = new AirPlane();
@@ -278,6 +355,17 @@ function createSky() {
     sky = new Sky();
     sky.mesh.position.y = -600;
     scene.add(sky.mesh);
+}
+
+// create starfish
+function createStarfish(){
+  starfish = new Starfish();
+
+  starfish.mesh.position.x = 100;
+  starfish.mesh.position.y = 100;
+
+  scene.add(starfish.mesh);
+
 }
 
 function loop() {
@@ -315,6 +403,9 @@ function init(event) {
     createLights();
     createPlane();
     createSky();
+
+    // Rosa
+    createStarfish();
     loop();
 }
 
