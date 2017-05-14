@@ -1,3 +1,4 @@
+
 //To add elements to scene, need 2 functions:
 //* Object function: actual geometry and meshes --> eg: creates sphere
 //* Create function: create an instance of the object, sets initial position of object,  add to scene --> scene.add(sky.mesh);
@@ -12,7 +13,8 @@ var Colors = {
     pink: 0xF5986E,
     sub: 0xFFDF68,
     blue: 0x68c3c0,
-    purple: 0x9270C7,
+    purple: 0x9c68a4,
+    lightblue: 0x89dbec
 };
 
 // THREEJS RELATED VARIABLES
@@ -100,6 +102,7 @@ function createLights() {
 
 ///OBJECTS
 
+<<<<<<< HEAD
 var Starfish = function() {
     this.mesh = new THREE.Object3D();
     this.mesh.name = "starfish";
@@ -178,6 +181,8 @@ var Starfish = function() {
 }
 
 
+=======
+>>>>>>> 796c5d1d27f8e84d81c46453117df00700fb1783
 var AirPlane = function() {
     this.mesh = new THREE.Object3D();
     this.mesh.name = "airPlane";
@@ -348,8 +353,39 @@ var Snek = function() {
 
 };
 
+// starfish
+
+var cuteBubbles = function(){
+  this.mesh = new THREE.Object3D();
+  this.mesh.name = "starfish";
+
+  // var geometry = new THREE.TorusKnotGeometry( 5, 4, 2, 16 );
+  // var material = new THREE.MeshBasicMaterial( {  color: Colors.purple } );
+  // var torusKnot = new THREE.Mesh( geometry, material );
+
+  var geometry = new THREE.SphereBufferGeometry( 1.5, 32, 32 );
+  var material = new THREE.MeshBasicMaterial( {color: Colors.lightblue} );
+
+  var bubbles = 100;
+
+  for (var i = 0; i < bubbles; i++) {
+
+      var bubble = new THREE.Mesh(geometry.clone(), material);
+
+      bubble.position.x = getRndInteger(-300,300);
+      bubble.position.y = getRndInteger(-300,300);
+
+      this.mesh.add(bubble);
+  }
+
+}
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
 // 3D Models
 var airplane;
+var myBubbles;
 
 function createStarfish() {
     var starfish = new Starfish();
@@ -371,6 +407,17 @@ function createSky() {
     scene.add(sky.mesh);
 }
 
+// create starfish
+function createBubbles(){
+  myBubbles = new cuteBubbles();
+
+  myBubbles.mesh.position.x = 100;
+  myBubbles.mesh.position.y = -100;
+
+  scene.add(myBubbles.mesh);
+
+}
+
 function loop() {
     updatePlane();
     // sky.mesh.rotate.x += 0.1;
@@ -379,6 +426,15 @@ function loop() {
     if (sky.mesh.position.x < -2250) {
         sky.mesh.position.x = 2000;
     }
+
+    // update starfish
+    myBubbles.mesh.translateY(.5);
+
+    if (myBubbles.mesh.position.y > 500) {
+        myBubbles.mesh.position.y = -300 ;
+    }
+
+    // ocutupus
     renderer.render(scene, camera);
     requestAnimationFrame(loop);
 }
@@ -406,6 +462,9 @@ function init(event) {
     createLights();
     createPlane();
     createSky();
+
+    // Rosa
+    createBubbles();
     loop();
 }
 
