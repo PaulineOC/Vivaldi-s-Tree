@@ -329,14 +329,14 @@ var Snek = function() {
 
 var Starfish = function(){
   this.mesh = new THREE.Object3D();
+  this.mesh.name = "starfish";
 
   var geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
-  var material = new THREE.MeshBasicMaterial( {  color: Colors.pink,} );
+  var material = new THREE.MeshBasicMaterial( {  color: Colors.pink } );
   var torusKnot = new THREE.Mesh( geometry, material );
 
   // add to mesh
   this.mesh.add( torusKnot );
-
 
 }
 // 3D Models
