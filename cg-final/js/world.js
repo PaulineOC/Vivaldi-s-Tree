@@ -274,7 +274,7 @@ var Starfish = function(){
   // var material = new THREE.MeshBasicMaterial( {  color: Colors.purple } );
   // var torusKnot = new THREE.Mesh( geometry, material );
 
-  var geometry = new THREE.SphereBufferGeometry( 5, 32, 32 );
+  var geometry = new THREE.SphereBufferGeometry( 2, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {color: Colors.lightblue} );
   var sphere = new THREE.Mesh( geometry, material );
 
