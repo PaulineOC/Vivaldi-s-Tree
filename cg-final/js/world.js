@@ -314,6 +314,13 @@ function loop() {
         sky.mesh.position.x = 2000;
     }
 
+    // update starfish
+    sky.mesh.translateY(-5);
+
+    if (sky.mesh.position.x < -2250) {
+        sky.mesh.position.x = 2000;
+    }
+
     // ocutupus
     renderer.render(scene, camera);
     requestAnimationFrame(loop);
