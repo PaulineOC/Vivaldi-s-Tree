@@ -269,7 +269,7 @@ var Starfish = function(){
   this.mesh = new THREE.Object3D();
   this.mesh.name = "starfish";
 
-  var geometry = new THREE.TorusKnotGeometry( 5, 3, 100, 16 );
+  var geometry = new THREE.TorusKnotGeometry( 5, 3, 50, 16 );
   var material = new THREE.MeshBasicMaterial( {  color: Colors.purple } );
   var torusKnot = new THREE.Mesh( geometry, material );
 
