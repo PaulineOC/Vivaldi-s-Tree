@@ -315,10 +315,10 @@ function loop() {
     }
 
     // update starfish
-    sky.mesh.translateY(-5);
+    starfish.mesh.translateY(-5);
 
-    if (sky.mesh.position.x < -2250) {
-        sky.mesh.position.x = 2000;
+    if (starfish.mesh.position.y < -2250) {
+        starfish.mesh.position.y = 2000;
     }
 
     // ocutupus
