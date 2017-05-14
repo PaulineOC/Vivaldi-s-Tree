@@ -316,7 +316,7 @@ function createBubbles(){
   myBubbles = new cuteBubbles();
 
   myBubbles.mesh.position.x = 100;
-  myBubbles.mesh.position.y = 400;
+  myBubbles.mesh.position.y = -100;
 
   scene.add(myBubbles.mesh);
 
