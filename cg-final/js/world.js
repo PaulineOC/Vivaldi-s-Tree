@@ -269,7 +269,7 @@ var Starfish = function(){
   this.mesh = new THREE.Object3D();
   this.mesh.name = "starfish";
 
-  var geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
+  var geometry = new THREE.TorusKnotGeometry( 5, 3, 100, 16 );
   var material = new THREE.MeshBasicMaterial( {  color: Colors.purple } );
   var torusKnot = new THREE.Mesh( geometry, material );
 
@@ -313,6 +313,8 @@ function loop() {
     if (sky.mesh.position.x < -2250) {
         sky.mesh.position.x = 2000;
     }
+
+    // ocutupus
     renderer.render(scene, camera);
     requestAnimationFrame(loop);
 }
