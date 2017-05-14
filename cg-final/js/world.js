@@ -108,11 +108,11 @@ var Starfish = function() {
     var geomSubFin = new THREE.BoxGeometry(10, 5, 1, 1, 1, 1);
     var matCockpit = new THREE.MeshPhongMaterial({
         color: Colors.purple,
-        shading: THREE.FlatShading
+        // shading: THREE.FlatShading
     });
     var subFin = new THREE.Mesh(geomSubFin, matCockpit);
-    subFin.castShadow = true;
-    subFin.receiveShadow = true;
+    // subFin.castShadow = true;
+    // subFin.receiveShadow = true;
     subFin.position.set(60, 35, 0);
     this.mesh.add(subFin);
 
@@ -123,8 +123,8 @@ var Starfish = function() {
         // shading: THREE.FlatShading
     });
     var subFin = new THREE.Mesh(geomSubFin, matCockpit);
-    subFin.castShadow = true;
-    subFin.receiveShadow = true;
+    // subFin.castShadow = true;
+    // subFin.receiveShadow = true;
     subFin.position.set(70, 35, 0);
     this.mesh.add(subFin);
 
@@ -135,8 +135,8 @@ var Starfish = function() {
         // shading: THREE.FlatShading
     });
     var subFin = new THREE.Mesh(geomSubFin, matCockpit);
-    subFin.castShadow = true;
-    subFin.receiveShadow = true;
+    // subFin.castShadow = true;
+    // subFin.receiveShadow = true;
     subFin.position.set(70, 45, 0);
     this.mesh.add(subFin);
 
@@ -147,8 +147,8 @@ var Starfish = function() {
         // shading: THREE.FlatShading
     });
     var subFin = new THREE.Mesh(geomSubFin, matCockpit);
-    subFin.castShadow = true;
-    subFin.receiveShadow = true;
+    // subFin.castShadow = true;
+    // subFin.receiveShadow = true;
     subFin.position.set(65, 26, 0);
     this.mesh.add(subFin);
 
@@ -159,8 +159,8 @@ var Starfish = function() {
         // shading: THREE.FlatShading
     });
     var subFin = new THREE.Mesh(geomSubFin, matCockpit);
-    subFin.castShadow = true;
-    subFin.receiveShadow = true;
+    // subFin.castShadow = true;
+    // subFin.receiveShadow = true;
     subFin.position.set(75, 26, 0);
     this.mesh.add(subFin);
 
@@ -171,8 +171,8 @@ var Starfish = function() {
         // shading: THREE.FlatShading
     });
     var subFin = new THREE.Mesh(geomSubFin, matCockpit);
-    subFin.castShadow = true;
-    subFin.receiveShadow = true;
+    // subFin.castShadow = true;
+    // subFin.receiveShadow = true;
     subFin.position.set(80, 35, 0);
     this.mesh.add(subFin);
 }
