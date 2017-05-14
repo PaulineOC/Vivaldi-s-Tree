@@ -13,7 +13,7 @@ var Colors = {
     pink: 0xF5986E,
     sub: 0xFFDF68,
     blue: 0x68c3c0,
-    purple: 0x551a8b
+    purple: 0x9c68a4
 };
 
 // THREEJS RELATED VARIABLES
