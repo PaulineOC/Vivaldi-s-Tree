@@ -283,8 +283,8 @@ var cuteBubbles = function(){
 
       var bubble = new THREE.Mesh(geometry.clone(), material);
 
-      bubble.position.x = Math.floor((Math.random() * 100) + 1);
-      bubble.position.y = Math.floor((Math.random() * 100) + 1);
+      bubble.position.x = Math.floor((Math.random() * 500) + 1);
+      bubble.position.y = Math.floor((Math.random() *500) + 1);
 
       this.mesh.add(bubble);
   }
