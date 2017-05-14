@@ -13,7 +13,8 @@ var Colors = {
     pink: 0xF5986E,
     sub: 0xFFDF68,
     blue: 0x68c3c0,
-    purple: 0x9c68a4
+    purple: 0x9c68a4,
+    lightblue: 0x89dbec
 };
 
 // THREEJS RELATED VARIABLES
@@ -269,12 +270,16 @@ var Starfish = function(){
   this.mesh = new THREE.Object3D();
   this.mesh.name = "starfish";
 
-  var geometry = new THREE.TorusKnotGeometry( 5, 4, 2, 16 );
-  var material = new THREE.MeshBasicMaterial( {  color: Colors.purple } );
-  var torusKnot = new THREE.Mesh( geometry, material );
+  // var geometry = new THREE.TorusKnotGeometry( 5, 4, 2, 16 );
+  // var material = new THREE.MeshBasicMaterial( {  color: Colors.purple } );
+  // var torusKnot = new THREE.Mesh( geometry, material );
+
+  var geometry = new THREE.SphereBufferGeometry( 5, 32, 32 );
+  var material = new THREE.MeshBasicMaterial( {color: Colors.lightblue} );
+  var sphere = new THREE.Mesh( geometry, material );
 
   // add to mesh
-  this.mesh.add( torusKnot );
+  this.mesh.add( sphere );
 
 }
 // 3D Models
