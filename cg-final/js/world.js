@@ -334,7 +334,7 @@ function loop() {
     // update starfish
     myBubbles.mesh.translateY(.5);
 
-    if (myBubbles.mesh.position.y > 1000) {
+    if (myBubbles.mesh.position.y > 600) {
         myBubbles.mesh.position.y = -400 ;
     }
 
