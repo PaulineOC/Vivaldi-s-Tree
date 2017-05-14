@@ -334,8 +334,8 @@ function loop() {
     // update starfish
     myBubbles.mesh.translateY(.5);
 
-    if (myBubbles.mesh.position.y > 600) {
-        myBubbles.mesh.position.y = -400 ;
+    if (myBubbles.mesh.position.y > 500) {
+        myBubbles.mesh.position.y = -300 ;
     }
 
     // ocutupus
