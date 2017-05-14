@@ -299,7 +299,7 @@ function createStarfish(){
   starfish = new Starfish();
 
   starfish.mesh.position.x = 100;
-  starfish.mesh.position.y = 100;
+  starfish.mesh.position.y = 400;
 
   scene.add(starfish.mesh);
 
@@ -318,7 +318,7 @@ function loop() {
     starfish.mesh.translateY(-1);
 
     if (starfish.mesh.position.y < -100) {
-        starfish.mesh.position.y =500 ;
+        starfish.mesh.position.y =400 ;
     }
 
     // ocutupus
