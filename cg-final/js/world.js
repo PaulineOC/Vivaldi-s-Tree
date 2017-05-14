@@ -266,7 +266,7 @@ var Snek = function() {
 
 // starfish
 
-var Starfish = function(){
+var cuteBubbles = function(){
   this.mesh = new THREE.Object3D();
   this.mesh.name = "starfish";
 
@@ -276,15 +276,25 @@ var Starfish = function(){
 
   var geometry = new THREE.SphereBufferGeometry( 2, 32, 32 );
   var material = new THREE.MeshBasicMaterial( {color: Colors.lightblue} );
-  var sphere = new THREE.Mesh( geometry, material );
 
+  var bubbles = 100;
+
+  for (var i = 0; i < bubbles; i++) {
+
+      var bubble = new THREE.Mesh(geom.clone(), mat);
+
+      bubble.position.x = Math.floor((Math.random() * 100) + 1);
+      bubble.position.y = Math.floor((Math.random() * 100) + 1);
+
+      this.mesh.add(bubble);
+  }
   // add to mesh
   this.mesh.add( sphere );
 
 }
 // 3D Models
 var airplane;
-var starfish;
+var myBubbles;
 
 function createPlane() {
     airplane = new AirPlane();
@@ -300,13 +310,13 @@ function createSky() {
 }
 
 // create starfish
-function createStarfish(){
-  starfish = new Starfish();
+function createBubbles(){
+  myBubbles = new cuteBubbles();
 
-  starfish.mesh.position.x = 100;
-  starfish.mesh.position.y = 400;
+  myBubbles.mesh.position.x = 100;
+  myBubbles.mesh.position.y = 400;
 
-  scene.add(starfish.mesh);
+  scene.add(myBubbles.mesh);
 
 }
 
