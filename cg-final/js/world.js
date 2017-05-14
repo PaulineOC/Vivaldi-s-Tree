@@ -1,8 +1,11 @@
 
+
+
 //To add elements to scene, need 2 functions:
 //* Object function: actual geometry and meshes --> eg: creates sphere
 //* Create function: create an instance of the object, sets initial position of object,  add to scene --> scene.add(sky.mesh);
 //See SKY functions for reference
+
 
 
 //COLORS
@@ -363,16 +366,31 @@ var cuteBubbles = function(){
   var material = new THREE.MeshBasicMaterial( {color: Colors.lightblue} );
 
   var bubbles = 100;
-
   for (var i = 0; i < bubbles; i++) {
-
       var bubble = new THREE.Mesh(geometry.clone(), material);
-
       bubble.position.x = getRndInteger(-300,300);
       bubble.position.y = getRndInteger(-300,300);
-
       this.mesh.add(bubble);
   }
+}
+
+
+
+var SeaCreature = function(){
+  this.mesh = new THREE.Object3D();
+    this.mesh.name ="seaCreature";
+    var geometry = new THREE.TorusKnotGeometry( 1, 4, 10, 10 );
+    var material = new THREE.MeshBasicMaterial( {  color: Colors.purple } );
+
+    var torusKnot = new THREE.Mesh( geometry, material );
+
+    for (var i = 0; i < 10; i++) {
+      var creature = new THREE.Mesh(geometry.clone(), material);
+      creature.position.x = getRndInteger(-300,300);
+      creature.position.y = getRndInteger(-300,300);
+      this.mesh.add(creature);
+  }
+
 
 }
 
@@ -382,6 +400,9 @@ function getRndInteger(min, max) {
 // 3D Models
 var airplane;
 var myBubbles;
+var creature;
+
+
 
 function createStarfish() {
     var starfish = new Starfish();
@@ -411,6 +432,14 @@ function createBubbles(){
   myBubbles.mesh.position.y = -100;
 
   scene.add(myBubbles.mesh);
+
+}
+
+function createCreature(){
+  creature = new SeaCreature();
+  creature.mesh.position.x = 100;
+  creature.mesh.position.y = -100;
+  scene.add(creature.mesh);
 
 }
 
@@ -459,8 +488,10 @@ function init(event) {
     createPlane();
     createSky();
 
-    // Rosa
     createBubbles();
+
+    createCreature();
+
     loop();
 }
 
