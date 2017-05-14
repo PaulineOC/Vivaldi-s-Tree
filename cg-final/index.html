@@ -4,111 +4,95 @@
 		<!-- Stylesheet -->
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<script type="text/javascript" src="js/three.min.js"></script>
-		<script type="text/javascript" src="js/world.js"/></script>
 
+		
+		
+		<script type="text/javascript" src="js/world.js"/></script>
 		<script type="text/javascript" src="js/M.js"></script>
+
 	</head>
     <body>
-		<div><canvas id=canvas1 width=600 height=400></div>
+		<div><canvas id=canvas1 width=1000 height=625></div>
 		<div id="world"></div>
-
 
 	<!-- End Shaders -->
     </body>
 	<script src=js/drawlib1.js></script>
+	<script src=js/drawlib2.js></script>
+
 	<script src=js/M.js></script>
+	<script src=js/S.js></script>
+
+
+
+
 	<script>
 
-	   // MATRIX IS AN ARRAY OF 16 NUMBERS.
+
+		
 
 	   var m = [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0];
+	   var Hermite = [2,-3,0,1, -2,3,0,0, 1,-2,1,0, 1,-1,0,0];
+	   function cubic(A, t) { return A[0] * t*t*t + A[1] * t*t + A[2] * t + A[3]; }
+	   var posX=1000/2;
+	   var posY=3*600/4;
+	   var startPosX=25;
+	   var startPosY=300;
+
+	   var squid=false;
+	   var lastDownTarget;
+
+	   canvas = document.getElementById('canvas');
+		document.addEventListener('keydown', function(event) {
+			if(lastDownTarget == canvas && event.keyCode == '82' ) {
+				console.log('squi');
+	            squid=!squid;
+        	}	
+		});
+
 
 	   canvas1.update = function(g) {
+		   	if(squid){
+			   	g.lineCap = 'round';
+			    g.lineJoin = 'round';
+			    g.lineWidth = 1;
+			     //Squid Body 
+			    g.beginPath();
+			    g.moveTo(startPosX,startPosY);
+			    g.lineTo(startPosX+150,startPosY-50);
+			    g.lineTo(startPosX+150,startPosY+50);
+			    g.fillStyle = "black";
+			    g.fill();
+			    g.stroke();
+			    g.closePath();
+				//Math.cos(time)
+			    M.identity(m);
+			    for(var i=1;i<6;i++){
+				      var P0 = [-.850,.045,  0];
+				      var P1 = [ (-.850*Math.cos(time*1.5))/6,-.3*(i/6),  0];
+				      var R0 = [  1.,  0,  0];
+				      var R1 = [  1,  0,  0];
+				      var X = M.transform(Hermite, [ P0[0], P1[0], R0[0], R1[0] ]);
+				      var Y = M.transform(Hermite, [ P0[1], P1[1], R0[1], R1[1] ]);
+				      var Z = M.transform(Hermite, [ P0[2], P1[2], R0[2], R1[2] ]);
+				      var C = [];
+				      for (var t = 0 ; t < 1.001 ; t += 1/20){
+				         C.push([ cubic(X,t), cubic(Y,t), cubic(Z,t) ]);
+				         this.drawCurves(m, [ C ]);
+				     }
+			   	}//end of for
 
-	      // DRAW A CURVE IN 3D WITH PERSPECTIVE PROJECTION.
+			   	g.beginPath();
+			   	g.moveTo(50,50);
+			   	g.closePath();
 
-	      function drawCurve(c) {
-	         var i, cv, x, y, z, fl = 5,
-		     w = canvas1.width;
-		     h = canvas1.height;
-
-		 cv = [];
-		 for (i = 0 ; i < c.length ; i++) {
-
-		    // RETRIEVE COORDINATES FROM CURVE POINT
-
-		    x = c[i][0];
-		    y = c[i][1];
-		    z = c[i][2];
-
-		    // DO PERSPECTIVE TRANSFORM
-
-		    x *= fl / (fl - z);
-		    y *= fl / (fl - z);
-
-		    // DO VIEWPORT TRANSFORM
-
-		    x =  w * x * .5 + .5 * w;
-		    y = -w * y * .5 + .5 * h;
-		    cv.push([x, y, 0]);
-	         }
-
-		 // DRAW THE PROJECTED CURVE ONTO THE CANVAS.
-
-		 g.beginPath();
-	         g.moveTo(cv[0][0], cv[0][1]);
-		 for (i = 1 ; i < c.length ; i++)
-	            g.lineTo(cv[i][0], cv[i][1]);
-		 g.stroke();
-	      }
-
-	      var c, i;
-
-	      // DRAW AN OUTLINE AROUND THE CANVAS.
-
-	      g.beginPath();
-	      g.moveTo(0,0);
-	      g.lineTo(this.width,0);
-	      g.lineTo(this.width,this.height);
-	      g.lineTo(0,this.height);
-	      g.lineTo(0,0);
-	    //   g.stroke();
-
-	      // A CURVE WHOSE POINTS ALL LIE ON A CUBE.
-
-	      c = [
-	         [-1,-1, 1],
-	         [ 1,-1, 1],
-		 [ 1, 1, 1],
-		 [-1, 1, 1],
-		 [-1,-1, 1],
-
-	         [-1,-1,-1],
-	         [ 1,-1,-1],
-		 [ 1, 1,-1],
-		 [-1, 1,-1],
-		 [-1,-1,-1],
-	      ];
-
-	      // TRANSFORM THE CUBE FOR THIS ANIMATION FRAME.
-
-	      M.identity(m);
-	      M.rotateY (m, time);
-	      M.rotateX (m, time * 2);
-	      M.scale   (m, .3);
-
-	      // TRANSFORM THE POINTS OF THE CURVE.
-
-	      for (i = 0 ; i < c.length ; i++)
-	         c[i] = M.transform(m, c[i]);
-
-	      // DRAW THE CURVE.
-
-	      drawCurve(c);
-	   }
-
-	   // WE ARE DRAWING ONLY ONE CANVAS.
-
+			}
+		}  
 	   drawCanvases([canvas1]);
-	</script>
+</script>
+
+
+
+
+
 </html>
